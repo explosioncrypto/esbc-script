@@ -191,13 +191,9 @@ EOF
     #Starting daemon first time just to generate masternode private key
     esbcoind -daemon
 echo -ne '[##                 ] (15%)\r'
-sleep .5
 echo -ne '[######             ] (30%)\r'
-sleep .5
 echo -ne '[########           ] (45%)\r'
-sleep 1
 echo -ne '[##############     ] (72%)\r'
-sleep .5
 echo -ne '[###################] (100%)\r'
 echo -ne '\n'
 
