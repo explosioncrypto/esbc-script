@@ -9,7 +9,7 @@
 #
 
 #Color codes
-RED='\033[0;91m'
+RED='\033[0;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
@@ -207,7 +207,30 @@ echo -ne '\n'
     if [ -z "$genkey" ]; then
         echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
         echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
-        exit 1
+		echo -e "${RED}I will try force new private key...${NC}"
+		sleep 2s
+		echo -e "${YELLOW}Generating masternode private key...${NC}"
+        genkey=$(esbcoin-cli masternode genkey)
+		if [ -z "$genkey" ]; then
+		echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
+        echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
+        echo -e "${RED}I will force generating of key again, this may take longer...${NC}"
+		esbcoin-cli stop
+		sleep 2s
+		echo -e "${YELLOW}Processing...${NC}"
+		rm -rf .esbcoin/blocks
+		rm -rf .esbcoin/chainstate
+		echo -e "${GREEN}I will start new generating process soon, starting daemon... ${NC}"
+		esbcoind -daemon
+		sleep 4s
+		echo -e "${YELLOW}Generating masternode private key...${NC}"
+		genkey=$(esbcoin-cli masternode genkey)
+		    if [ -z "$genkey" ]; then
+			echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
+			echo -e "${RED}ERROR: Reboot VPS and try again or supply exsisting genkey as a paramater.${NC} \a"
+			exit 1
+			fi
+		fi
     fi
     
     #Stopping daemon to create esbcoin.conf
