@@ -191,13 +191,9 @@ EOF
     #Starting daemon first time just to generate masternode private key
     esbcoind -daemon
 echo -ne '[##                 ] (15%)\r'
-sleep .5
 echo -ne '[######             ] (30%)\r'
-sleep .5
 echo -ne '[########           ] (45%)\r'
-sleep 1
 echo -ne '[##############     ] (72%)\r'
-sleep .5
 echo -ne '[###################] (100%)\r'
 echo -ne '\n'
 
@@ -216,7 +212,7 @@ echo -ne '\n'
         echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
         echo -e "${RED}I will force generating of key again, this may take longer...${NC}"
 		esbcoin-cli stop
-		sleep 2s
+		sleep 5s
 		echo -e "${YELLOW}Processing...${NC}"
 		rm -rf .esbcoin/blocks
 		rm -rf .esbcoin/chainstate
@@ -225,6 +221,9 @@ echo -ne '\n'
 		sleep 4s
 		echo -e "${YELLOW}Generating masternode private key...${NC}"
 		genkey=$(esbcoin-cli masternode genkey)
+		echo -e "${GREEN}Succes! Now please wait for finishing the masternode setup...${NC}"
+		esbcoin-cli stop
+		sleep 5s
 		    if [ -z "$genkey" ]; then
 			echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
 			echo -e "${RED}ERROR: Reboot VPS and try again or supply exsisting genkey as a paramater.${NC} \a"
@@ -232,6 +231,11 @@ echo -ne '\n'
 			fi
 		fi
     fi
+    
+    #Stopping daemon to create esbcoin.conf
+    esbcoin-cli stop
+    sleep .5
+fi
     
     #Stopping daemon to create esbcoin.conf
     esbcoin-cli stop
