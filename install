@@ -232,15 +232,10 @@ echo -ne '\n'
 			echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
 			echo -e "${RED}ERROR: Reboot VPS and try again or supply exsisting genkey as a paramater.${NC} \a"
 			exit 1
-			fi
+	            fi
 		fi
     fi
-    
-    #Stopping daemon to create esbcoin.conf
-    esbcoin-cli stop
-    sleep .5
-fi
-    
+        
     #Stopping daemon to create esbcoin.conf
     esbcoin-cli stop
     sleep .5
