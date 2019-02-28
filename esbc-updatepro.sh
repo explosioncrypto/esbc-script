@@ -95,7 +95,7 @@ if [[ $DOSETUP =~ "y" ]] ; then
 	  sleep 2s
 	  exit 1
 else
-      echo -e "${RED}Bootstrap Installation has failed... ${NC}"
+      echo -e "${RED}ERROR: Bootstrap Installation has failed... ${NC}"
 	  sleep 2s 
 	  esbcoin-cli --version
 	  rm -rf esbc-updatepro.sh
