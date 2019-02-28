@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RED='\033[0;91m'
+RED='\033[0;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' 
@@ -21,13 +21,13 @@ else
 #Version Checking
 /usr/local/bin/esbcoin-cli --version
 if [ "$(/usr/local/bin/esbcoin-cli --version)" = "ESBC Core RPC client version 2.0.4.14" ]; then
-    echo -e "${GREEN} Version of Daemon is correct! ${NC}"
+    echo -e "${GREEN}Version of Daemon is correct! ${NC}"
 else
-    echo -e "${YELLOW} Version of Daemon is Incorrect! ${NC}"
+    echo -e "${YELLOW}Version of Daemon is Incorrect! ${NC}"
 	sleep 1s
-	echo -e "${YELLOW} I will force update of the daemon! ${NC}"
+	echo -e "${YELLOW}I will force update of the daemon! ${NC}"
 	sleep 1s
-	echo -e "${GREEN} Stopping ESBC Server and will update Daemon! ${NC}"
+	echo -e "${GREEN}Stopping ESBC Server and will update Daemon! ${NC}"
 	esbcoin-cli stop
     sleep 4s
     rm -rf .esbcoin/mncache.dat .esbcoin/mnpayments.dat .esbcoin/peers.dat
@@ -42,13 +42,13 @@ else
     rm -rf esbc-daemon-linux-x86_64-static.tar.gz
     esbcoind -daemon
     esbcoin-cli --version
-	echo -e "${GREEN} Daemon Succesfully updated! ${NC}"
-	echo -e "${GREEN} Confirming Daemon status... ${NC}"
+	echo -e "${GREEN}Daemon Succesfully updated! ${NC}"
+	echo -e "${GREEN}Confirming Daemon status... ${NC}"
 	fi
 	
 #Checked Status
 sleep 3s
-echo -e "${GREEN} Status Checked! ${NC}"
+echo -e "${GREEN}Status Checked! ${NC}"
 sleep 1s
 
 #Bootstrap Installation 
@@ -71,21 +71,21 @@ if [[ $DOSETUP =~ "y" ]] ; then
 	  esbcoin-cli stop
 	  sleep 2s
 	  rm -rf .esbcoin/blocks .esbcoin/chainstate
-      echo -e "${GREEN} Removing the current blockchain data... ${NC}"
+      echo -e "${GREEN}Removing the current blockchain data... ${NC}"
       sleep 2s
-      echo -e "${GREEN} I will start downloading the blockchain files in 5 seconds... ${NC}"
+      echo -e "${GREEN}I will start downloading the blockchain files in 5 seconds... ${NC}"
       sleep 5s
 	  wget http://files.esbproject.online/bootstrap.zip
 	  sleep 2s
-	  echo -e "${GREEN} Now i will install the actual blockchain data! ${NC}"
+	  echo -e "${GREEN}Now i will install the actual blockchain data! ${NC}"
 	  sleep 1s
 	  sudo apt-get install unzip
 	  unzip bootstrap.zip -d .esbcoin
-	  echo -e "${GREEN} Files succesfully installed! ${NC}"
+	  echo -e "${GREEN}Files succesfully installed! ${NC}"
 	  sleep 1s
       echo -e "${GREEN} Removing .zip file from your directory ${NC}"
 	  rm -rf bootstrap.zip 
-	  echo -e "${GREEN} Starting the Server... ${NC}"
+	  echo -e "${GREEN}Starting the Server... ${NC}"
 	  sleep 1s
 	  esbcoind -daemon
 	  esbcoin-cli --version
