@@ -14,7 +14,7 @@ if ! /usr/local/bin/esbcoin-cli getinfo >/dev/null 2>&1; then
     esbcoind
     sleep 10s 
 else
-    echo -e "${GREEN} Server is running, i will check if version is correct! ${NC}"
+    echo -e "${GREEN}Server is running, i will check if version is correct! ${NC}"
     sleep 2s
     fi	
 	
