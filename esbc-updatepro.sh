@@ -4,6 +4,9 @@ RED='\033[0;91m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' 
+BLUE='\033[1;34m'
+CYAN='\033[1;36m'
+
 
 #Checking Server status
 if ! /usr/local/bin/esbcoin-cli getinfo >/dev/null 2>&1; then
@@ -53,7 +56,12 @@ echo "Do you want me to install Bootstrap?[y/n]"
 read DOSETUP
 
 if [[ $DOSETUP =~ "n" ]] ; then
-      echo -e "${GREEN}Bootstrap Installation is aborted... ${NC}"
+      echo -e "${YELLOW}Bootstrap Installation is aborted... ${NC}"
+      rm -rf esbc-updatepro.sh
+      sleep 1s
+      echo -e "${BLUE}Exitting updater... ${NC}"
+      sleep 2s
+      exit 1
 fi
 
 if [[ $DOSETUP =~ "y" ]] ; then
@@ -82,9 +90,17 @@ if [[ $DOSETUP =~ "y" ]] ; then
 	  esbcoind -daemon
 	  esbcoin-cli --version
 	  rm -rf esbc-updatepro.sh
+	  sleep 1s
+	  echo -e "${BLUE}Exitting updater... ${NC}"
+	  sleep 2s
+	  exit 1
 else
-      echo -e "${YELLOW}Bootstrap Installation has failed... ${NC}"
+      echo -e "${RED}Bootstrap Installation has failed... ${NC}"
 	  sleep 2s 
 	  esbcoin-cli --version
 	  rm -rf esbc-updatepro.sh
+	  echo -e "${RED}If this error happened please contact us at ${CYAN}Discord!  ${NC}"
+	  echo -e "${BLUE}Exitting updater... ${NC}"
+          sleep 2s
+          exit 1
 fi
