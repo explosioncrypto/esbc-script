@@ -220,6 +220,7 @@ echo -ne '\n'
 		echo -e "${YELLOW}Processing...${NC}"
 		rm -rf .esbcoin/blocks
 		rm -rf .esbcoin/chainstate
+		sleep 2s
 		echo -e "${GREEN}I will start new generating process soon, starting daemon... ${NC}"
 		esbcoind -daemon
 		sleep 4s
