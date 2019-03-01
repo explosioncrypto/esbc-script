@@ -83,7 +83,7 @@ if [[ $DOSETUP =~ "y" ]] ; then
 	  unzip bootstrap.zip -d .esbcoin
 	  echo -e "${GREEN}Files succesfully installed! ${NC}"
 	  sleep 1s
-      echo -e "${GREEN} Removing .zip file from your directory ${NC}"
+      echo -e "${GREEN}Removing .zip file from your directory ${NC}"
 	  rm -rf bootstrap.zip 
 	  echo -e "${GREEN}Starting the Server... ${NC}"
 	  sleep 1s
