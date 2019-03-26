@@ -7,6 +7,23 @@ NC='\033[0m'
 BLUE='\033[1;34m'
 CYAN='\033[1;36m'
 
+#Intro
+clear
+
+echo -e "${GREEN} ---------------ESBC Updater v2.1.0.1----------------+
+ |                                                  |::
+ |                                                  |::
+ |               ___  __  ___   __                  |::
+ |              |__  /__  |__) /                    |::
+ |              |___ .__/ |__) \__                  |::
+ |                                                  |::
+ |     ${YELLOW}ESBC Updater v 2.1.0.1 which check your      ${GREEN}|::
+ |            ${YELLOW}version and force update ${GREEN}             |::
+ |                 ${YELLOW}By ${CYAN}RasmonT ${GREEN}                      |::
+ +------------------------------------------------+::
+ ::::::::::::::::::::::::::::::::::::::::::::::::::S${NC}"
+echo -e "${GREEN}Processing... ${NC}"
+sleep 2s
 
 #Checking Server status
 if ! /usr/local/bin/esbcoin-cli getinfo >/dev/null 2>&1; then
