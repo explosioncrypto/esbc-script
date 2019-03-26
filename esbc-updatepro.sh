@@ -70,7 +70,7 @@ if [[ $DOSETUP =~ "y" ]] ; then
 	  echo -e "${GREEN}Stopping Server and preparing installation... ${NC}"
 	  esbcoin-cli stop
 	  sleep 2s
-	  rm -rf .esbcoin/blocks .esbcoin/chainstate
+	  rm -rf .esbcoin/blocks .esbcoin/chainstate .esbcoin/how-to-use.txt
       echo -e "${GREEN}Removing the current blockchain data... ${NC}"
       sleep 2s
       echo -e "${GREEN}I will start downloading the blockchain files in 5 seconds... ${NC}"
