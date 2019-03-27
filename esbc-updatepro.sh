@@ -152,7 +152,9 @@ else
 	  sleep 2s
 fi
 
-#Masternode Checking
+#Masternode Checking after installation of bootstrap
+echo -e "${GREEN}Loading the daemon after bootstrap installation... ${NC}"
+sleep 35s
 echo -e "${GREEN}Checking the masternode status... ${NC}"
 sleep 2s
 
