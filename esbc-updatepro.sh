@@ -75,9 +75,45 @@ read DOSETUP
 if [[ $DOSETUP =~ "n" ]] ; then
       echo -e "${YELLOW}Bootstrap Installation is aborted... ${NC}"
       rm -rf esbc-updatepro.sh
-      sleep 1s
-      echo -e "${BLUE}Exitting updater... ${NC}"
       sleep 2s
+      
+      echo -e "${GREEN}Checking the masternode status... ${NC}"
+sleep 2s
+
+/usr/local/bin/esbcoin-cli masternode status
+if [[ "$(/usr/local/bin/esbcoin-cli masternode status)" ==  "{"* ]]; then
+    echo -e "${GREEN}Masternode is running! ${NC}"
+	sleep 1s
+    echo -e "${BLUE}Exitting updater... ${NC}"
+	sleep 2s
+	exit 1
+else
+    echo -e "${RED}ERROR: MN is not running! ${NC}"
+	sleep 2s
+	echo -e "${YELLOW}YOU NEED TO START YOUR MASTERNODE FROM WALLET${NC}"
+	sleep 1s
+    echo -e "${YELLOW}Press ${CYAN}Start Allias ${YELLOW}to run your masternode... ${NC}"
+	sleep 1s
+	echo -e "${YELLOW}This will take one minute... ${NC}"
+	sleep 60s
+	/usr/local/bin/esbcoin-cli masternode status
+    if [[ "$(/usr/local/bin/esbcoin-cli masternode status)" ==  "{"* ]]; then
+	echo -e "${GREEN}Masternode is running! ${NC}"
+	sleep 1s
+    echo -e "${BLUE}Exitting updater... ${NC}"
+	sleep 2s
+	exit 1
+else
+    echo -e "${RED}ERROR: MN is not running! ${NC}"
+	sleep 1s
+	echo -e "${RED}ERROR: Make sure you filled ${BLUE}Masternode.conf ${YELLOW}correctly... ${NC}"
+	sleep 1s
+    echo -e "${RED}ERROR: If you see this message please contact us at ${CYAN}Discord... ${NC}"
+	echo -e "${BLUE}Exitting updater... ${NC}"
+	sleep 2s
+	exit 1
+	fi	
+    fi
 fi
 
 if [[ $DOSETUP =~ "y" ]] ; then
